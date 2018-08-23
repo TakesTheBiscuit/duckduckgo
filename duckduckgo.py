@@ -13,8 +13,8 @@ def search(keywords, max_results=None):
 	while True:
 		res = requests.post(url, data=params)
 		doc = html.fromstring(res.text)
-
-		results = [a.get('href') for a in doc.cssselect('#links .links_main a')]
+		
+		results = [a.get('href') for a in doc.cssselect('.result__a')]
 		for result in results:
 			yield result
 			time.sleep(0.1)
